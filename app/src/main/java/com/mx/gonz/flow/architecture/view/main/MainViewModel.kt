@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.mx.gonz.flow.architecture.domain.interactor.DropStorageUseCase
+import com.mx.gonz.flow.architecture.domain.interactor.GetRemotePokemonsUseCase
 import com.mx.gonz.flow.architecture.domain.interactor.ObservePokemonsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -14,11 +15,12 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val observePokemons: ObservePokemonsUseCase,
-    private val dropStorage: DropStorageUseCase
+    private val dropStorage: DropStorageUseCase,
+    private val getPokemons: GetRemotePokemonsUseCase
 ) : ViewModel() {
 
     val pokemons = liveData {
-        observePokemons(viewModelScope)
+        observePokemons()
             .flowOn(Dispatchers.IO)
             .distinctUntilChanged()
             .collect {
@@ -28,6 +30,10 @@ class MainViewModel(
 
     fun resetStorage() = viewModelScope.launch {
         dropStorage()
+    }
+
+    fun getRemotePokemons() = viewModelScope.launch {
+        getPokemons()
     }
 
     override fun onCleared() {
