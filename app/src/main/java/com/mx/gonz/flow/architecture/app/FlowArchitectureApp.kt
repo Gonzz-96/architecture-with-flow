@@ -18,7 +18,8 @@ class FlowArchitectureApp : Application() {
                 domainModule,
                 localModule,
                 remoteModule,
-                roomModule
+                roomModule,
+                viewModelsModule
             )
         }
     }
