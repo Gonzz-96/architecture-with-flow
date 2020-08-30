@@ -14,18 +14,6 @@ class ObservePokemonsUseCase(
     private val remotePokemonApi: RemotePokemonApi,
     private val localPokemonApi: LocalPokemonApi
 ) {
-    operator fun invoke(coroutineScope: CoroutineScope): Flow<List<Pokemon>> {
-        // launch new coroutine to get a pokemon every 2 seconds
-        coroutineScope.launch(Dispatchers.IO) {
-            for (i in 0 until 10) {
-                val pokemonId = Random.nextInt(1, 300)
-                remotePokemonApi.getPokemonById(pokemonId).let {
-                    localPokemonApi.addNewPokemon(it)
-                }
-                delay(2_000)
-            }
-        }
-
-        return localPokemonApi.getFlowOfLocalPokemons()
-    }
+    operator fun invoke(): Flow<List<Pokemon>> =
+        localPokemonApi.getFlowOfLocalPokemons()
 }
