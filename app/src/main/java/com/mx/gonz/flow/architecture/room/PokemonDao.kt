@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
-    @Query("SELECT * FROM pokemons")
+    @Query("SELECT * FROM pokemons ORDER BY id ASC")
     fun getAllPokemons(): Flow<List<RoomPokemon>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
