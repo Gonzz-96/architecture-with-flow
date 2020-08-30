@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.mx.gonz.flow.architecture.domain.entity.Pokemon
 import com.mx.gonz.flow.architecture.domain.interactor.ObservePokemonsUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -17,7 +18,7 @@ class MainViewModel(
 
     val pokemons = liveData {
         observePokemons(viewModelScope)
-            .flowOn(viewModelScope.coroutineContext)
+            .flowOn(Dispatchers.IO)
             .distinctUntilChanged()
             .collect {
                 emit(it)
