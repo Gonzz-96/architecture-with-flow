@@ -23,7 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvPokemons.adapter = PokemonAdapter(emptyList())
 
+        initializeListeners()
         observeData()
+    }
+
+    private fun initializeListeners() {
+        binding.btnDropStorage.setOnClickListener { mainViewModel.resetStorage() }
+        binding.btnGetRemotePokemons.setOnClickListener { mainViewModel.getRemotePokemons() }
     }
 
     private fun observeData() {
