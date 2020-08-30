@@ -5,14 +5,15 @@ import com.mx.gonz.flow.architecture.domain.entity.Pokemon
 import com.mx.gonz.flow.architecture.room.PokemonDao
 import com.mx.gonz.flow.architecture.room.RoomPokemon
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 
 class LocalPokemonApiImpl(
     private val pokemonDao: PokemonDao
 ) : LocalPokemonApi {
-    override fun observeLocalPokemons(): Flow<Pokemon> =
+    override fun getFlowOfLocalPokemons(): Flow<List<Pokemon>> =
         pokemonDao.getAllPokemons()
-            .map(::toPokemon)
+            .map { it.map(::toPokemon) }
 
     override suspend fun addNewPokemon(pokemon: Pokemon) {
         pokemon.run {

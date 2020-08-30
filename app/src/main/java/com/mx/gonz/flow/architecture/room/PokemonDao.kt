@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PokemonDao {
     @Query("SELECT * FROM pokemons")
-    fun getAllPokemons(): Flow<RoomPokemon>
+    fun getAllPokemons(): Flow<List<RoomPokemon>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewPokemon(pokemon: RoomPokemon)
