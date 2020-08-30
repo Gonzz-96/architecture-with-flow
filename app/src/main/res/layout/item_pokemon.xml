@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tv_pokemon_name"
+        android:id="@+id/tv_position"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingVertical="32dp"
@@ -15,6 +15,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tv_pokemon_name"
+        tools:text="Position"/>
+
+    <TextView
+        android:id="@+id/tv_pokemon_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="32dp"
+        android:gravity="center"
+        android:textColor="#000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tv_position"
         app:layout_constraintRight_toLeftOf="@id/tv_pokemon_id"
         tools:text="Pokemon"/>
 

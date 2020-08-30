@@ -15,11 +15,11 @@ class PokemonAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         LayoutInflater.from(parent.context)
             .let { inflater -> ItemPokemonBinding.inflate(inflater, parent, false) }
-            .let { binding  -> ViewHolder(binding) }
+            .let { binding -> ViewHolder(binding) }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(pokemons[position])
+        holder.bind(pokemons[position], position)
 
     override fun getItemCount(): Int =
         pokemons.size
@@ -32,7 +32,8 @@ class PokemonAdapter(
     class ViewHolder(
         val binding: ItemPokemonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(pokemon: Pokemon) {
+        fun bind(pokemon: Pokemon, position: Int) {
+            binding.tvPosition.text = "Position: ${position + 1}"
             binding.tvPokemonId.text = pokemon.id.toString()
             binding.tvPokemonName.text = pokemon.name
         }
