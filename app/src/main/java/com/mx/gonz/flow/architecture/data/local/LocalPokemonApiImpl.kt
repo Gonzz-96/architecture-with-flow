@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 class LocalPokemonApiImpl(
     private val pokemonDao: PokemonDao
 ) : LocalPokemonApi {
-    override suspend fun observeLocalPokemons(): Flow<Pokemon> =
+    override fun observeLocalPokemons(): Flow<Pokemon> =
         pokemonDao.getAllPokemons()
             .map(::toPokemon)
 

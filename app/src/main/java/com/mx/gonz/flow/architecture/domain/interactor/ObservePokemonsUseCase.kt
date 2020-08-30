@@ -14,7 +14,7 @@ class ObservePokemonsUseCase(
     private val remotePokemonApi: RemotePokemonApi,
     private val localPokemonApi: LocalPokemonApi
 ) {
-    suspend operator fun invoke(coroutineScope: CoroutineScope): Flow<Pokemon> {
+    operator fun invoke(coroutineScope: CoroutineScope): Flow<Pokemon> {
         // launch new coroutine to get a pokemon every 2 seconds
         coroutineScope.launch(Dispatchers.IO) {
             for (i in 0 until 100) {
@@ -28,6 +28,4 @@ class ObservePokemonsUseCase(
 
         return localPokemonApi.observeLocalPokemons()
     }
-
-
 }

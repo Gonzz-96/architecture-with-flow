@@ -4,6 +4,6 @@ import com.mx.gonz.flow.architecture.domain.entity.Pokemon
 import kotlinx.coroutines.flow.Flow
 
 interface LocalPokemonApi {
-    suspend fun observeLocalPokemons(): Flow<Pokemon>
+    fun observeLocalPokemons(): Flow<Pokemon>
     suspend fun addNewPokemon(pokemon: Pokemon)
 }
