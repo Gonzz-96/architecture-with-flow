@@ -17,7 +17,7 @@ class ObservePokemonsUseCase(
     operator fun invoke(coroutineScope: CoroutineScope): Flow<List<Pokemon>> {
         // launch new coroutine to get a pokemon every 2 seconds
         coroutineScope.launch(Dispatchers.IO) {
-            for (i in 0 until 100) {
+            for (i in 0 until 10) {
                 val pokemonId = Random.nextInt(1, 300)
                 remotePokemonApi.getPokemonById(pokemonId).let {
                     localPokemonApi.addNewPokemon(it)
