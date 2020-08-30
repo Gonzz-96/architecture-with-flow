@@ -21,6 +21,10 @@ class LocalPokemonApiImpl(
         }.let { pokemonDao.addNewPokemon(it) }
     }
 
+    override suspend fun deleteDatabaseContent() {
+        pokemonDao.deleteDatabaseContent()
+    }
+
     private fun toPokemon(roomPokemon: RoomPokemon) = Pokemon(
         id = roomPokemon.id,
         name = roomPokemon.name
