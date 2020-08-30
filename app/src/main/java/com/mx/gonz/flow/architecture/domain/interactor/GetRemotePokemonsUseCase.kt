@@ -10,7 +10,7 @@ class GetRemotePokemonsUseCase(
     private val localPokemonApi: LocalPokemonApi
 ) {
     suspend operator fun invoke() {
-        for (i in 0 until 10) {
+        for (i in 0..9) {
             val pokemonId = Random.nextInt(1, 300)
             // get pokemon from network
             remotePokemonApi.getPokemonById(pokemonId).let {
@@ -18,7 +18,7 @@ class GetRemotePokemonsUseCase(
                 localPokemonApi.addNewPokemon(it)
             }
             // simulate heavy operation
-            delay(2_000)
+            delay(100)
         }
     }
 }
