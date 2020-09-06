@@ -22,7 +22,7 @@ ext {
             kotlin     : [
                     kotlin : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
                     kotlinx: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_version",
-                    test   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_version"
+                    kotlinxTest   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinx_version"
             ],
             androidx   : [
                     material        : 'com.google.android.material:material:1.1.0',
