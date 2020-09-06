@@ -59,6 +59,10 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-fragment:$koin_version"
 
+    // Mockito + Mockito Kotlin
+    testImplementation libraries.testing.mockito
+    testImplementation libraries.testing.mockitoKotlin2
+
     // ViewModel extensions
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
