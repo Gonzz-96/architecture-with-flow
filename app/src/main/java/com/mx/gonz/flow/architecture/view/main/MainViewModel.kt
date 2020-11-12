@@ -1,8 +1,6 @@
 package com.mx.gonz.flow.architecture.view.main
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.mx.gonz.flow.architecture.domain.interactor.DropStorageUseCase
 import com.mx.gonz.flow.architecture.domain.interactor.GetRemotePokemonsUseCase
 import com.mx.gonz.flow.architecture.domain.interactor.ObservePokemonsUseCase
@@ -23,12 +21,18 @@ class MainViewModel(
         .distinctUntilChanged()
         .asLiveData(viewModelScope.coroutineContext)
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     fun resetStorage() = viewModelScope.launch {
         dropStorage()
     }
 
     fun getRemotePokemons() = viewModelScope.launch {
+        _isLoading.value = true
         getPokemons()
+        _isLoading.value = false
     }
 
     override fun onCleared() {

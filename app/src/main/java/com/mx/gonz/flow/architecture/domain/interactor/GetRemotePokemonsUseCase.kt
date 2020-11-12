@@ -17,8 +17,6 @@ class GetRemotePokemonsUseCase(
                 // then introduce it in the db
                 localPokemonApi.addNewPokemon(it)
             }
-            // simulate heavy operation
-            delay(100)
         }
     }
 }

@@ -2,11 +2,10 @@ package com.mx.gonz.flow.architecture.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
-import com.mx.gonz.flow.architecture.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mx.gonz.flow.architecture.adapter.PokemonAdapter
 import com.mx.gonz.flow.architecture.databinding.ActivityMainBinding
-import com.mx.gonz.flow.architecture.domain.entity.Pokemon
+import com.mx.gonz.flow.architecture.listener.PaginatedScrollListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +21,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.rvPokemons.adapter = PokemonAdapter(emptyList())
+        binding.rvPokemons.apply {
+            addOnScrollListener(object : PaginatedScrollListener(layoutManager as LinearLayoutManager) {
+                override fun loadMoreItems() {
+                    mainViewModel.getRemotePokemons()
+                }
+
+                override fun isLoading(): Boolean = mainViewModel.isLoading.value ?: false
+                override fun isLastPage(): Boolean = false
+            })
+        }
 
         initializeListeners()
         observeData()
